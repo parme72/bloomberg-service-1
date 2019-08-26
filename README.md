@@ -60,7 +60,7 @@ For BLP API access, import the module as follows:
 
 ```
 <script type="module">
-  import blpApi from "../client/bloomberg-blpapi-service.js";
+  import blpApi from "https://openfin.github.io/client/bloomberg-blpapi-service.js";
   
   // blpApi code goes here...
 </script>
@@ -70,7 +70,7 @@ Likewise, for Terminal Connect access, import the module as follows:
 
 ```
 <script type="module">
-  import terminalApi from "../client/bloomberg-terminalapi-service.js";
+  import terminalApi from "https://openfin.github.io/client/bloomberg-terminalapi-service.js";
   
   // terminalApi code goes here...
 </script>
@@ -109,7 +109,7 @@ let correlationIDs = await blpClient.subscribe([
 ]);
 
 blpClient.addEventListener('market-data', e => {
-  if(e.data.correlationID = correlationIDs[0]) {
+  if(e.data.correlationID === correlationIDs[0]) {
     // do something...
   }
 });
