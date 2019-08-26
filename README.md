@@ -8,7 +8,9 @@ Both the BLPAPI and TC features require that the Bloomberg Terminal is running o
 
 Additionally, users wishing to take advantage of the Terminal Connect API require additional configuration in order to utilize a Bloomberg-registered strong name signing key. Specific steps are provided, below.
 
-## How to Run the Demo
+# Running the Demo
+
+## Quick Start
 
 If OpenFin is already installed on the desktop, you can launch the demo directly from a browser or the system **Run...** dialog.
 
@@ -28,12 +30,89 @@ npm install
 npm start
 ```
 
-This will launch the project in debug mode, which will show the usually-headless service manager and service provider applications on the user desktop for additional troubleshooting and debugging.
+This will launch the project in debug mode, which will provide onscreen debugging and log file generation for additional debugging and troubleshooting support.
 
-In order to use the Bloomberg emulator instead of connecting to an actual terminal:
+In order to use the Bloomberg Terminal emulator instead of connecting to an actual terminal, pass the addition argument:
 
 ```
 npm start -- mock
+```
+
+# Including the Bloomberg Service in a Project
+
+## Launching the Service
+
+Inlude the following services declaration in the application manifest:
+
+```
+"services": [
+  {
+     "name": "bloomberg",
+     "manifestUrl": "https://openfin.github.io/bloomberg-service/provider/app.json"
+  }
+]
+```
+
+## Including the Client
+
+Unlike other services which are available as an NPM module, currently the Bloomberg Service is available as ES6 Modules.
+For BLP API access, import the module as follows:
+
+```
+<script type="module">
+  import blpApi from "../client/bloomberg-blpapi-service.js";
+  
+  // blpApi code goes here...
+</script>
+```
+
+Likewise, for Terminal Connect access, import the module as follows:
+
+```
+<script type="module">
+  import terminalApi from "../client/bloomberg-terminalapi-service.js";
+  
+  // terminalApi code goes here...
+</script>
+```
+
+# Getting Started with the API
+
+## Connecting to a Bloomberg Session
+
+```
+let blpClient = await blpApi.getClient();
+let sessionStarted = await blpClient.startSession();
+```
+
+## Requesting Data
+
+```
+let blpClient = await blpApi.getClient();
+let response = await blpClient.serviceRequest('//blp/refdata', 'ReferenceDataRequest', {
+  securities: ['IBM US Equity', 'VOD LN Equity'],
+  fields: ['PX_LAST', 'DS002', 'EQY_WEIGHTED_AVG_PX'],
+  overrides: [
+      { fieldId: 'VWAP_START_TIME', value: '9:30' },
+      { fieldId: 'VWAP_END_TIME', value: '11:30' }
+  ]
+});
+```
+
+## Subscribing to Market Data
+
+```
+let blpClient = await blpApi.getClient();
+let correlationIDs = await blpClient.subscribe([
+  security: 'IBM US Equity',
+  fields: ['LAST_PRICE', 'VOLUME']
+]);
+
+blpClient.addEventListener('market-data', e => {
+  if(e.data.correlationID = correlationIDs[0]) {
+    // do something...
+  }
+});
 ```
 
 ## Re-signing and Hosting Assets Locally
