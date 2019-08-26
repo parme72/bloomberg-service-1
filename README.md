@@ -13,7 +13,7 @@ Additionally, users wishing to take advantage of the Terminal Connect API requir
 If OpenFin is already installed on the desktop, you can launch the demo directly from a browser or the system **Run...** dialog.
 
 ```
-fins://openfin.github.io/bloomberg-service/demo/app.json)
+fins://openfin.github.io/bloomberg-service/demo/app.json
 ```
 
 Or otherwise you can generate an installer using our installer generation service:
