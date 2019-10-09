@@ -1,10 +1,10 @@
 # OpenFin Bloomberg Service
 
-This project contains the OpenFin Bloomberg Service code to allow OpenFin applications to communicate with a Bloomberg terminal running on the same desktop. This service provides BLPAPI requrest / response capability, market data subscriptions, as well as Termincal Connect (TC) automation APIs.
+This project contains the OpenFin Bloomberg Service code to allow OpenFin applications to communicate with a Bloomberg terminal running on the same desktop. This service provides BLPAPI request / response capability, market data subscriptions, as well as Terminal Connect (TC) automation APIs.
 
 ## Prerequites
 
-Both the BLPAPI and TC features require that the Bloomberg Terminal is running on the machine and currently logged in. For development purposes, the service provides a limited-functionalty terminal emulator which can be configured to be selected when a terminal is unavailable.
+Both the BLPAPI and TC features require that the Bloomberg Terminal is running on the machine and currently logged in. For development purposes, the service provides a limited-functionality terminal emulator which can be configured to be selected when a terminal is unavailable.
 
 Additionally, users wishing to take advantage of the Terminal Connect API require additional configuration in order to utilize a Bloomberg-registered strong name signing key. Specific steps are provided, below.
 
@@ -42,7 +42,7 @@ npm start -- mock
 
 ## Launching the Service
 
-Inlude the following services declaration in the application manifest:
+Include the following services declaration in the application manifest:
 
 ```
 "services": [
@@ -116,5 +116,5 @@ blpClient.addEventListener('market-data', e => {
 ```
 
 ## Re-signing and Hosting Assets Locally
-### (Required for TermincalConnect API)
+### (Required for TerminalConnect API)
 
