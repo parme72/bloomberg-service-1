@@ -12,6 +12,20 @@ const presets = {
 
         }
     },
+    'IntradayTickRequest': {
+        "serviceUri": "//blp/refdata",
+        "operationName": "IntradayTickRequest",
+        "requestObject": {
+            "security": "IBM US Equity",
+            "eventTypes": [
+                "TRADE",
+                "BID",
+                "ASK"
+            ],
+            "startDateTime": "2021-02-23T10:38:35",
+            "endDateTime": "2021-02-24T10:38:35"
+        }
+    },
     'ReferenceDataRequest': {
         serviceUri: '//blp/refdata',
         operationName: 'ReferenceDataRequest',
@@ -93,7 +107,7 @@ export class RequestResponseTest extends Component {
             let response = await blpClient.serviceRequest(serviceUri, operationName, requestObject);
             state.responseText = JSON.stringify(response, null, 2);
         }
-        catch(err) {
+        catch (err) {
             state.responseText = err.toString();
         }
 
