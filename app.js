@@ -4,7 +4,7 @@ const path = require('path');
 const url = require('url');
 const runtime = require('hadouken-js-adapter');
 
-const runtimeVersion = '11.69.42.29';
+const runtimeVersion = '19.89.58.32';
 
 (async function () {
     // Start the Express Server  
