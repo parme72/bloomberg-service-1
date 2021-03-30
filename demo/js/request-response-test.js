@@ -57,6 +57,30 @@ const presets = {
         operationName: 'instrumentListRequest',
         requestObject: {
             query: 'IBM',
+            maxResults: 10,
+            yellowKeyFilter: 'YK_FILTER_CORP'
+        }
+    },
+    'CurveListRequest': {
+        serviceUri: '//blp/instruments',
+        operationName: 'curveListRequest',
+        requestObject: {
+            bbgid: 'YCCD1016',
+            countryCode: 'US',
+            currencyCode: 'USD',
+            curveid: 'CD1016',
+            maxResults: 10,
+            query: 'GOLD',
+            subtype: 'CDS',
+            type: 'CORP'
+        }
+    },
+    'GovtListRequest': {
+        serviceUri: '//blp/instruments',
+        operationName: 'govtListRequest',
+        requestObject: {
+            partialMatch: true,
+            query: 'T*',
             maxResults: 10
         }
     },

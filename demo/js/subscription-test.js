@@ -22,7 +22,6 @@ export class SubscriptionTestElement extends Component {
             .then(client => {
                 blpClient = client;
                 blpClient.addEventListener('subscription-data', e => {
-                    console.log('subscription-data');
                     let state = this.state;
                     let { correlationID, MarketDataEvents } = e.data;
 

@@ -16,7 +16,6 @@ function getClient() {
         let cc = await fin.InterApplicationBus.Channel.connect('bloomberg-terminalapi-service/v1');
 
         cc.register('__dispatchEvent', evt => {
-            console.log('event: ', evt.type);
             let cb = cbs[evt.type];
             if (cb) {
                 cb.forEach(function (c) { c(evt); });
@@ -25,6 +24,16 @@ function getClient() {
         });
 
         cc.register('__getclientId', () => clientId);
+
+        cc.register('__logMessage', (message) => {
+            switch (message.type) {
+                case 'warn':
+                    console.warn(message.text, (message.args ?? []).length > 0 ? message.args : '');
+                case 'info':
+                default:
+                    console.log(message.text, (message.args ?? []).length > 0 ? message.args : '');
+            }
+        });
 
         return {
             addEventListener: function (type, listener) { (cbs[type] || (cbs[type] = [])).push(listener); },

@@ -38,6 +38,7 @@ export class SessionTestElement extends Component {
     }
 
     async disconnect() {
+        await blpClient.stopSession();
         this.setState(Object.assign(this.state, { connectionState: 'Disconnected' }));
     }
 
