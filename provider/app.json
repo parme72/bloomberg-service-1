@@ -21,7 +21,7 @@
       "alias": "bloomberg-service",
       "target": "OpenFin.BloombergService.exe",
       "args": "",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "forceDownload": true
     }
   ],
