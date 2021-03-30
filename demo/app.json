@@ -2,7 +2,7 @@
   "startup_app": {
     "name": "Bloomberg-API-Demo",
     "description": "Bloomberg-API-Demo",
-    "url": "https://openfin.github.io/bloomberg-service/demo/index.html",
+    "url": "/bloomberg-service/demo/index.html",
     "uuid": "Bloomberg-API-Demo",
     "autoShow": true
   },
@@ -18,7 +18,7 @@
   "services": [
     {
       "name": "bloomberg",
-      "manifestUrl": "https://openfin.github.io/bloomberg-service/provider/app.json"
+      "manifestUrl": "https://cdn.openfin.co/services/openfin/bloomberg/0.1.1/provider/app.json"
     }
   ]
 }
