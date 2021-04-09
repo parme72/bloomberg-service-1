@@ -125,10 +125,16 @@ export class RequestResponseTest extends Component {
 
     async sendRequest() {
         let state = this.state;
-        let { serviceUri, operationName, requestObject } = JSON.parse(this.state.requestText);
+        let request;
+        try {
+            request = JSON.parse(document.querySelector('#requestText').innerText);
+        }
+        catch (err) {
+            return;
+        }
 
         try {
-            let response = await blpClient.serviceRequest(serviceUri, operationName, requestObject);
+            let response = await blpClient.serviceRequest(request.serviceUri, request.operationName, request.requestObject);
             state.responseText = JSON.stringify(response, null, 2);
         }
         catch (err) {
@@ -148,7 +154,7 @@ export class RequestResponseTest extends Component {
             <select @change=${e => this.loadPreset(e)} value="${this.state.selectedPreset}">
             ${Object.keys(presets).map(p => html`<option value="${p}">${p}</option>`)}
             </select>
-            <pre contenteditable="true">${this.state.requestText}</pre>
+            <pre id="requestText" contenteditable="true">${this.state.requestText}</pre>
             <button @click=${() => this.sendRequest()}>Send Request</button>
         </div>
         <div>
