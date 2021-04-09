@@ -65,7 +65,6 @@ const presets = {
         serviceUri: '//blp/instruments',
         operationName: 'curveListRequest',
         requestObject: {
-            bbgid: 'YCCD1016',
             countryCode: 'US',
             currencyCode: 'USD',
             curveid: 'CD1016',
@@ -79,8 +78,7 @@ const presets = {
         serviceUri: '//blp/instruments',
         operationName: 'govtListRequest',
         requestObject: {
-            partialMatch: true,
-            query: 'T*',
+            query: 'T',
             maxResults: 10
         }
     },
@@ -88,8 +86,8 @@ const presets = {
         serviceUri: '//blp/apiflds',
         operationName: 'FieldInfoRequest',
         requestObject: {
-            id: ['LAST_PRICE', 'pq005', 'zz002'],
-            returnFieldDocumentation: false
+            id: ['LAST_PRICE'],
+            returnFieldDocumentation: true
         }
     },
     'FieldSearchRequest': {
