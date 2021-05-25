@@ -25,15 +25,13 @@ export class SessionTestElement extends Component {
         let state = this.state;
         state.connectionState = 'Connecting';
         this.setState(state);
-        let sessionStarted = await blpClient.startSession();
-
-        if (sessionStarted) {
-            state.connectionState = 'Connected';
+        const response = await blpClient.startSession();
+        if (response?.error) {
+            state.connectionState = response.error.message;
         }
         else {
-            state.connectionState = 'Failed';
+            state.connectionState = 'Connected';
         }
-
         this.setState(state);
     }
 

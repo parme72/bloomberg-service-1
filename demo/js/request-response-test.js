@@ -133,10 +133,14 @@ export class RequestResponseTest extends Component {
 
         try {
             let response = await blpClient.serviceRequest(request.serviceUri, request.operationName, request.requestObject);
+            if (response.error) {
+                throw new Error(response.error.message);
+            }
             state.responseText = JSON.stringify(response, null, 2);
         }
         catch (err) {
-            state.responseText = err.toString();
+            console.error(`Service request failed`, err.message);
+            state.responseText = err.message;
         }
 
         this.setState(state);

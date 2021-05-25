@@ -4,8 +4,7 @@ import blpApi from '../../client/bloomberg-blpapi-service.js';;
 let blpClient;
 
 const presets = [
-    { security: 'IBM US Equity', fields: 'LAST_PRICE' },
-    { security: 'VOD LN Equity', fields: 'LAST_PRICE' }
+    { security: 'IBM US Equity', fields: 'LAST_PRICE,VOLUME' }
 ];
 
 export class SubscriptionTestElement extends Component {
@@ -21,20 +20,22 @@ export class SubscriptionTestElement extends Component {
         blpApi.getClient()
             .then(client => {
                 blpClient = client;
-                blpClient.addEventListener('subscription-data', e => {
-                    let state = this.state;
-                    let { correlationID, MarketDataEvents } = e.data;
+                blpClient.addEventListener('SubscriptionData', e => {
+                    let { error, id, marketDataEvents } = e.data;
+                    if (error) {
+                        console.error(`Error occurred for subscription: ${id}`, error);
+                        return;
+                    }
 
-                    state.subscriptionData[correlationID].data = MarketDataEvents;
+                    let state = this.state;
+                    state.subscriptionData[id].data = marketDataEvents;
                     state.availableFields = Object.keys(
                         Object.assign({},
                             ...Object.keys(state.subscriptionData)
                                 .map(k => state.subscriptionData[k].data)));
-
                     if (state.selectedField === '' && state.availableFields.length > 0) {
                         state.selectedField = state.availableFields[0];
                     }
-
                     this.setState(state);
                 });
             });  
@@ -60,25 +61,28 @@ export class SubscriptionTestElement extends Component {
             fields: d.fields.split(',')
         }));
 
-        let correlationIDs = await blpClient.subscribe(subscriptions);
+        let results = await blpClient.subscribe(subscriptions);
 
-        correlationIDs.forEach((cID, idx) => {
-            state.subscriptionData[cID] = {
-                security: subscriptions[idx].security,
-                data: {}
-            };
+        results.forEach((result, idx) => {
+            if (result.error) {
+                console.error(`Failed to create subscription: ${subscriptions[idx].security}`, result.error);
+            }
+            else {
+                const { id } = result;
+                state.subscriptionData[id] = {
+                    security: subscriptions[idx].security,
+                    data: {}
+                };   
+            }
         });
 
         this.setState(state);
     }
 
-    async unsubscribe(correlationID) {
+    async unsubscribe(id) {
         let state = this.state;
-
-        await blpClient.cancel([correlationID]);
-
-        delete state.subscriptionData[correlationID];
-
+        await blpClient.cancel(id);
+        delete state.subscriptionData[id];
         this.setState(state);
     }
 

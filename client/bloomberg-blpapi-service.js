@@ -42,7 +42,7 @@ function getClient() {
             'stopSession': async function() { return cc.dispatch('stopSession', { identity, clientId, args: [] }); },
             'serviceRequest': async function(serviceName, operationName, requestObject) { return cc.dispatch('serviceRequest', { identity, clientId, args: [serviceName, operationName, requestObject] }); },
             'subscribe': async function(subscriptions) { return cc.dispatch('subscribe', { identity, clientId, args: [subscriptions] }); },
-            'cancel': async function(correlationIDs) { return cc.dispatch('cancel', { identity, clientId, args: [correlationIDs] }); }
+            'cancel': async function(id) { return cc.dispatch('cancel', { identity, clientId, args: [id] }); }
         };
     })());
 }
