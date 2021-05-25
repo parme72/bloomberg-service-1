@@ -21,7 +21,7 @@ export class SubscriptionTestElement extends Component {
             .then(client => {
                 blpClient = client;
                 blpClient.addEventListener('SubscriptionData', e => {
-                    let { error, id, marketDataEvents } = e.data;
+                    let { error, id, marketDataEvents } = e;
                     if (error) {
                         console.error(`Error occurred for subscription: ${id}`, error);
                         return;
