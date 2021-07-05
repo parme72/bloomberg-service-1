@@ -2,7 +2,7 @@
   "startup_app": {
     "name": "Bloomberg Service Manager",
     "description": "Bloomberg Service Manager",
-    "url": "https://cdn.openfin.co/release/bloomberg/0.2.0/provider/index.html",
+    "url": "https://cdn.openfin.co/release/bloomberg/0.2.1/provider/index.html",
     "uuid": "Bloomberg-Service-Manager",
     "autoShow": false,
     "permissions": {
@@ -17,11 +17,11 @@
   },
   "appAssets": [
     {
-      "src": "https://cdn.openfin.co/release/bloomberg/0.2.0/provider/assets/OpenFin.BloombergService.zip",
+      "src": "https://cdn.openfin.co/release/bloomberg/0.2.1/provider/assets/OpenFin.BloombergService.zip",
       "alias": "bloomberg-service",
       "target": "OpenFin.BloombergService.exe",
       "args": "",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "forceDownload": true
     }
   ],
