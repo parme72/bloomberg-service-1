@@ -18,7 +18,7 @@
   "services": [
     {
       "name": "bloomberg",
-      "manifestUrl": "https://cdn.openfin.co/release/bloomberg/0.2.1/provider/app.json"
+      "manifestUrl": "https://cdn.openfin.co/release/bloomberg/0.2.2/provider/app.json"
     }
   ]
 }
