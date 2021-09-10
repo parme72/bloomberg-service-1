@@ -8,19 +8,6 @@ Both the BLPAPI and TC features require that the Bloomberg Terminal is running o
 
 Additionally, users wishing to take advantage of the Terminal Connect API require additional configuration in order to utilize a Bloomberg-registered strong name signing key. Specific steps are provided, below.
 
-# Running the Demo
-
-## Quick Start
-
-If OpenFin is already installed on the desktop, you can launch the demo directly from a browser or the system **Run...** dialog.
-
-```
-fins://openfin.github.io/bloomberg-service/demo/app.json
-```
-
-Or otherwise you can generate an installer using our installer generation service:
-[Bloomberg Service Demo Installer](https://install.openfin.co/download/?os=win&config=https%3A%2F%2Fopenfin.github.io%2Fbloomberg-service%2Fdemo%2Fapp.json&fileName=bloomberg-service-demo-installer)
-
 ## Running the Project Locally
 
 Clone this repository and execute the following commands:
@@ -48,7 +35,7 @@ Include the following services declaration in the application manifest:
 "services": [
   {
      "name": "bloomberg",
-     "manifestUrl": "https://openfin.github.io/bloomberg-service/provider/app.json"
+     "manifestUrl": "https://cdn.openfin.co/release/bloomberg/0.2.2/provider/app.json"
   }
 ]
 ```
@@ -60,7 +47,7 @@ For BLP API access, import the module as follows:
 
 ```
 <script type="module">
-  import blpApi from "https://openfin.github.io/client/bloomberg-blpapi-service.js";
+  import blpApi from "https://cdn.openfin.co/release/bloomberg/0.2.2/client/bloomberg-blpapi-service.js";
   
   // blpApi code goes here...
 </script>
@@ -70,7 +57,7 @@ Likewise, for Terminal Connect access, import the module as follows:
 
 ```
 <script type="module">
-  import terminalApi from "https://openfin.github.io/client/bloomberg-terminalapi-service.js";
+  import terminalApi from "https://cdn.openfin.co/release/bloomberg/0.2.2/client/bloomberg-terminalapi-service.js";
   
   // terminalApi code goes here...
 </script>
